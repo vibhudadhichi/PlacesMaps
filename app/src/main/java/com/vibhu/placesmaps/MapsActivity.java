@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.view.MenuItem;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -27,8 +28,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         Intent i = getIntent();
         Log.i("locationInfo",Integer.toString(i.getIntExtra("locationInfo",-1)));
+
+        android.app.ActionBar actionBar = getActionBar();
+        actionBar.setHomeButtonEnabled(true);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()){
+            case android.R.id.home:
+                this.finish();
+                return true;
+                default: return super.onOptionsItemSelected(item);
+        }
+
+    }
 
     /**
      * Manipulates the map once available.
